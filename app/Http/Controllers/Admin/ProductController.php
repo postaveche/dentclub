@@ -123,10 +123,10 @@ class ProductController extends Controller
         $product->active = $request->active;
         $tagsIds = $request->tags;
         unset($request->tags);
-        if ($tagsIds == !null){
+        if (!empty($tagsIds)){
             foreach ($tagsIds as $tagsId) {
                 ProductTags::firstOrCreate([
-                    'product_id' => $id,
+                    'product_id' => $next_id,
                     'tag_id' => $tagsId
                 ]);
             }

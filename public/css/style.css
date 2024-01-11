@@ -6,6 +6,12 @@
 
 body{
     background-color: #FFFFFF;
+    font-family: Nunito;
+}
+
+.row{
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .header{
@@ -81,7 +87,19 @@ body{
 }
 
 .product_info{
-    margin: 20px 0 0 0;
+    border: 1px #e9e9ea solid;
+    border-radius: 10px;
+    background-color: #f5f5f6;
+}
+
+.product_info h1{
+    font-family: Nunito;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.product_info_container{
+    margin: 25px 20px;
 }
 
 .product_info_title{
@@ -118,36 +136,70 @@ body{
 
 .product_info_contact{
     display: flex;
-    font-size: 2rem;
+    flex-direction: column;
+    font-size: 1.5rem;
     font-weight: 700;
     align-items: center;
-    margin: 20px 30px;
+    justify-content: center;
     color: #2b2f32;
+    margin-top: 15px;
+    padding-top: 15px;
+    border: 1px #e9e9ea solid;
+    border-radius: 10px;
+    background-color: #f5f5f6;
+    width: 100%;
 }
 
 .product_info_contact a{
     padding-left: 10px;
     color: #2b2f32;
     text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.product_info_contact_mail{
+    font-size: 16px;
+}
+
+.product_info_contact_mail a{
+    font-size: 16px;
 }
 
 .product_block{
     display: flex;
 }
 
+.product_info_contact_harta{
+    width: 95%;
+}
+
+.product_info_contact_adresa{
+    font-size: 16px;
+}
+
+.product_info_contact_harta iframe{
+    width: 100%;
+}
+
+.category_info_block{
+    margin: 25px 20px;
+}
+
 .product_item{
     display: flex;
-    width: 250px;
+    width: 240px;
+    padding: 0!important;
 }
 
 .product_item_container{
     display: block;
-    width: 250px;
+    width: 240px;
 }
 
-.producr_item_img{
+.product_item_img{
     display: flex;
-    width: 200px;
+    width: 100%;
+    height: 240px;
     justify-content: center;
     align-items: center;
     object-fit: cover;
@@ -168,7 +220,7 @@ body{
 }
 
 .sidebar{
-    border: 1px solid #a9a9a9;
+    border: 1px solid #e9e9ea;
     border-radius: 5px;
     padding: 20px 20px;
 }
@@ -200,4 +252,13 @@ body{
     font-size: 15px;
     text-decoration: underline;
     transition: 0.3s font-size;
+}
+
+.pagination{
+    --bs-pagination-active-bg: #2b2f32;
+    --bs-pagination-active-border-color: #eaebec;
+}
+
+.pagination a{
+    color: #2b2f32;
 }

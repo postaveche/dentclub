@@ -22,4 +22,6 @@ ul{
 .product_slider_images{
     width: 100%;
     object-fit: cover;
+    border: 1px solid #d4d4d5;
+    border-radius: 5px;
 }

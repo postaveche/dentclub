@@ -13,6 +13,9 @@ class CategoryController extends Controller
         $all_category = Categories::all();
         $top_category = MainController::top_category();
         $products = Products::paginate(20);
+        if ($all_category->isEmpty()){
+            abort(404);
+        }
         return view('pages.category', [
             'top_category' => $top_category,
             'all_category' => $all_category,
@@ -24,6 +27,9 @@ class CategoryController extends Controller
         $all_category = Categories::all();
         $top_category = MainController::top_category();
         $category_info = Categories::where('slug', $slug)->get();
+        if ($category_info->isEmpty()){
+            abort(404);
+        }
         $products ='';
         if ($category_info[0]->category_id == 0){
             $subcategory = Categories::where('category_id', $category_info[0]->id)->get();
@@ -31,7 +37,7 @@ class CategoryController extends Controller
                 $cat_id = $sub->id;
                 $data[] = $cat_id;
             }
-            $products = Products::whereIn('category_id', $data)->get();
+            $products = Products::whereIn('category_id', $data)->paginate(20);
         }else{
             $products = Products::where('category_id', $category_info[0]->id)->paginate(20);
         }

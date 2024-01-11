@@ -25,8 +25,8 @@ class ProductController extends Controller
         //dd($product);
     }
 
-    public static function random3(){
-        $product = Products::inRandomOrder()->limit(3)->get();
+    public static function random5(){
+        $product = Products::inRandomOrder()->limit(5)->get();
         return view('blocks.random3', [
             'products' => $product,
         ]);
