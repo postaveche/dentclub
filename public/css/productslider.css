@@ -1,0 +1,25 @@
+ul{
+    list-style: none outside none;
+    padding-left: 0;
+    margin: 0;
+}
+.product_slider .item{
+    margin-bottom: 60px;
+}
+.content-slider li{
+    background-color: #ed3020;
+    text-align: center;
+    color: #FFF;
+}
+.content-slider h3 {
+    margin: 0;
+    padding: 70px 0;
+}
+.product_slider{
+    width: 100%;
+}
+
+.product_slider_images{
+    width: 100%;
+    object-fit: cover;
+}
