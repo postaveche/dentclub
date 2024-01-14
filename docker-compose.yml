@@ -1,42 +1,92 @@
 version: '3'
 services:
-    nginx:
-        image: nginx:latest
-        volumes:
-            - ./:/var/www
-            - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
-        ports:
-            - "8876:80"
-        depends_on:
-            - app
-        container_name: dentclub
-    app:
+
+    #
+    # """  PHP Services  """
+    #
+    #
+
+    # PHP 8
+    php:
         build:
             context: .
             dockerfile: ./_docker/app/Dockerfile
+        image: common_php8/latest
+        container_name: php81
+        restart: unless-stopped
+        tty: true
+        environment:
+            SERVICE_NAME: php81
+            SERVICE_TAGS: dev
+        working_dir: /home/dentclub/www
         volumes:
-            - ./:/var/www
-        depends_on:
-            - db
-        container_name: app
+            - ./:/home/dentclub/www
+            - ./_docker/app/php.ini:/usr/local/etc/php/conf.d/php.ini
+        networks:
+            - common_network
+
+    # Nginx Service
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - .:/home/dentclub/www
+            - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - common_network
+
+    #Node Service
+    node:
+        image: node:21
+        container_name: node
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - ./:/home/dentclub/www
+        networks:
+            - common_network
+
+    #MySQL Services
     db:
-        image: mysql:8.2.0
-        restart: always
-        volumes:
-            - ./tmp/db:/var/lib/mysql
+        image: mysql:8.0
+        container_name: db
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
         environment:
             MYSQL_DATABASE: dentclub
             MYSQL_ROOT_PASSWORD: root
-        ports:
-            - "3318:3306"
-        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        environment:
-            PMA_HOST: db
-            MYSQL_ROOT_PASSWORD: root
-        depends_on:
-            - db
-        ports:
-            - 3001:80
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - dbdata:/var/lib/mysql/
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - common_network
 
+    #Redis Service
+    redis:
+        image: "redis:7.2.4"
+        container_name: redis
+        restart: unless-stopped
+        tty: true
+        command: redis-server
+        ports:
+            - "6379:6379"
+        networks:
+            - common_network
+
+#Docker Networks
+networks:
+    common_network:
+        driver: bridge
+#Volumes
+volumes:
+    dbdata:
+        driver: local

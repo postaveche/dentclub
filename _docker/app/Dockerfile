@@ -1,25 +1,64 @@
 FROM php:8.1-fpm
 
+ #Copy composer.lock and composer.json
+#COPY  ./composer.json /var/www/
 
+# Set working directory
+WORKDIR /home/dentclub/www
+
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-      apt-utils \
-      libpq-dev \
-      libpng-dev \
-      libzip-dev \
-      zip unzip \
-      git && \
-      docker-php-ext-install pdo_mysql && \
-      docker-php-ext-install bcmath && \
-      docker-php-ext-install gd && \
-      docker-php-ext-install zip && \
-      apt-get clean && \
-      rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl
 
-COPY ./_docker/app/php.ini /usr/local/etc/php/conf.d/php.ini
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN curl -sS https://getcomposer.org/installer | php -- \
-    --filename=composer \
-    --install-dir=/usr/local/bin
 
-WORKDIR /var/www
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+# Install PHP extensions
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
+    install-php-extensions mbstring pdo_mysql zip exif pcntl gd
+
+
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+#Installing node 12.x
+RUN curl -sL https://deb.nodesource.com/setup_21.x| bash -
+RUN apt-get install -y nodejs
+
+
+# Add user for laravel application
+RUN groupadd -g 1000 www-data
+RUN useradd -u 1000 -ms /bin/bash -g www-data www-data
+
+RUN chown -R www-dara:www-data /home/dentclub/www
+# Copy existing application directory contents
+#COPY ./src/. /var/www
+
+# Copy existing application directory permissions
+COPY --chown=www-data:www-data . /home/dentclub/www
+
+# Change current user to www
+USER dentclub
+
+#RUN composer install --no-scripts --no-autoloader
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]
