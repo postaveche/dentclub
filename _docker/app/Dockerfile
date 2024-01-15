@@ -44,18 +44,18 @@ RUN apt-get install -y nodejs
 
 
 # Add user for laravel application
-RUN groupadd -g 1000 www-data
-RUN useradd -u 1000 -ms /bin/bash -g www-data www-data
+#RUN chmod -R 775 /storage
+#RUN chmod -R ugo+rw /storage
 
-RUN chown -R www-dara:www-data /home/dentclub/www
+#RUN chown -R www-dara:www-data /home/dentclub/www
 # Copy existing application directory contents
 #COPY ./src/. /var/www
 
 # Copy existing application directory permissions
-COPY --chown=www-data:www-data . /home/dentclub/www
+#COPY --chown=www-data:www-data . /home/dentclub/www
 
 # Change current user to www
-USER dentclub
+#USER dentclub
 
 #RUN composer install --no-scripts --no-autoloader
 

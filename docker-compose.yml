@@ -11,8 +11,9 @@ services:
         build:
             context: .
             dockerfile: ./_docker/app/Dockerfile
-        image: common_php8/latest
+        image: php:8.1-fpm
         container_name: php81
+        user: "1000:1000"
         restart: unless-stopped
         tty: true
         environment:
@@ -61,12 +62,12 @@ services:
             - "3306:3306"
         environment:
             MYSQL_DATABASE: dentclub
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: vasea14
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
         volumes:
-            - dbdata:/var/lib/mysql/
-            - ./mysql/my.cnf:/etc/mysql/my.cnf
+            - ./_docker/db:/var/lib/mysql/
+            - ./-docker/mysql/my.cnf:/etc/mysql/my.cnf
         networks:
             - common_network
 
@@ -79,6 +80,18 @@ services:
         command: redis-server
         ports:
             - "6379:6379"
+        networks:
+            - common_network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment: 
+            PMA_HOST: db
+            MYSQL_ROOT_PASSWORD: vasea14
+        depends_on:
+            - db
+        ports:
+            - 3001:80
         networks:
             - common_network
 
