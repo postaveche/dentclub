@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index(){
         $all_category = Categories::all();
         $top_category = MainController::top_category();
-        $products = Products::paginate(20);
+        $products = Products::orderby('id','DESC')->paginate(20);
         if ($all_category->isEmpty()){
             abort(404);
         }
@@ -37,9 +37,9 @@ class CategoryController extends Controller
                 $cat_id = $sub->id;
                 $data[] = $cat_id;
             }
-            $products = Products::whereIn('category_id', $data)->paginate(20);
+            $products = Products::whereIn('category_id', $data)->orderby('id','DESC')->paginate(20);
         }else{
-            $products = Products::where('category_id', $category_info[0]->id)->paginate(20);
+            $products = Products::where('category_id', $category_info[0]->id)->orderby('id','DESC')->paginate(20);
         }
         return view('pages.category', [
             'top_category' => $top_category,

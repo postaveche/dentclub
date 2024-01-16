@@ -3,5 +3,9 @@
 @section('title', 'DentClub.MD')
 
 @section('content')
-    DentClub
+    <div class="main">
+        <div class="container">
+            {{\App\Http\Controllers\MainController::productatori_rand()}}
+        </div>
+    </div>
 @endsection

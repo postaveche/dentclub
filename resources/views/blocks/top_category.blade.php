@@ -34,8 +34,10 @@
                         </li>
                     @endforeach
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Caută" aria-label="Search">
+                <form class="d-flex" action="{{route('search')}}" method="post">
+                    @csrf
+                    @method('get')
+                    <input class="form-control me-2" type="search" name="key" placeholder="Caută" aria-label="Search" required>
                     <button class="btn btn-outline-light" type="submit">Caută</button>
                 </form>
             </div>

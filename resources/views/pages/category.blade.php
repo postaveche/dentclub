@@ -22,7 +22,7 @@
                             <div class="product_item_container">
                                 <div class="product_item_img"><a href="{{route('productpage', $product->slug)}}"
                                                                  title="{{$product->name_ro}}"><img
-                                            src="/storage/products_thumb/{{$product->image_thumb}}"
+                                            src="/storage/products_thumb/{{$product->image_thumb}}@200"
                                             alt="{{$product->name_ro}}" style="width: 200px;"></a></div>
                                 <div class="product_item_name"><a href="{{route('productpage', $product->slug)}}"
                                                                   title="{{$product->name_ro}}">{{$product->name_ro}}</a>

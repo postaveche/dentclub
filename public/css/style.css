@@ -8,6 +8,7 @@ body{
     background-color: #FFFFFF;
     font-family: Nunito;
     margin: 0;
+    padding: 0;
 }
 
 .row{
@@ -85,6 +86,12 @@ body{
 
 .content{
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main{
+    margin: 20px 0;
 }
 
 .product_info{
@@ -262,4 +269,16 @@ body{
 
 .pagination a{
     color: #2b2f32;
+}
+
+.footer{
+    background-color: #2b2f32;
+    color: #ffffff;
+}
+
+.footer_copy{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
 }

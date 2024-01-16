@@ -21,7 +21,7 @@
                         <div class="product_item">
                             <div class="product_item_container">
                                 <div class="product_item_img"><a href="{{route('list_producatori', $producator->slug)}}"
-                                                                 title="{{$producator->name}}"><img
+                                                                 title="{{$producator->name}}@200"><img
                                             src="/storage/producatori/{{$producator->logo}}"
                                             alt="{{$producator->name}}" style="width: 200px;"></a></div>
                                 <div class="product_item_name"><a href="{{route('productpage', $producator->slug)}}"

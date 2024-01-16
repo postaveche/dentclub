@@ -33,10 +33,11 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - "80:80"
+            - "8876:80"
             - "443:443"
         volumes:
             - .:/home/dentclub/www
+            - ./_docker/nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
         networks:
             - common_network
@@ -67,7 +68,7 @@ services:
             SERVICE_NAME: mysql
         volumes:
             - ./_docker/db:/var/lib/mysql/
-            - ./-docker/mysql/my.cnf:/etc/mysql/my.cnf
+            - ./_docker/mysql/my.cnf:/etc/mysql/my.cnf
         networks:
             - common_network
 
@@ -85,7 +86,7 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        environment: 
+        environment:
             PMA_HOST: db
             MYSQL_ROOT_PASSWORD: vasea14
         depends_on:

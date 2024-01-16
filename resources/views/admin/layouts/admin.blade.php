@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/admin/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="margin: 0">
 <div class="wrapper">
 
     @include('admin.blocks.preloader')

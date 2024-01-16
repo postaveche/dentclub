@@ -12,8 +12,8 @@
             </div>
             <div class="col-lg-9 p-0">
                 <div class="category_info_block d-flex align-items-center">
-                    <div><img src="/storage/producatori/{{$producator[0]->logo}}" alt="{{$producator[0]->name}}" style="width: 120px"></div>
-                <div class="d-flex flex-column">
+                    <div><img src="/storage/producatori/{{$producator[0]->logo}}@120" alt="{{$producator[0]->name}}" style="width: 120px"></div>
+                <div class="d-flex flex-column m-2">
                 <h1>{{$producator[0]->name??'Toți producătorii'}}</h1>
                 <small>{{$producator[0]->site??'Toți producătorii pe DentClub.MD'}}</small>
                     <small>{{$producator[0]->country}}</small>
@@ -26,7 +26,7 @@
                                 <div class="product_item_container">
                                     <div class="product_item_img"><a href="{{route('productpage', $product->slug)}}"
                                                                      title="{{$product->name_ro}}"><img
-                                                src="/storage/products_thumb/{{$product->image_thumb}}"
+                                                src="/storage/products_thumb/{{$product->image_thumb}}@200"
                                                 alt="{{$product->name_ro}}" style="width: 200px;"></a></div>
                                     <div class="product_item_name"><a href="{{route('productpage', $product->slug)}}"
                                                                       title="{{$product->name_ro}}">{{$product->name_ro}}</a>

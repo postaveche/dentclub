@@ -1,6 +1,6 @@
 @extends('layouts.dentclub')
 
-@section('title', $product[0]->name_ro)
+@section('title', $product[0]->name_ro.' - '.config('app.name', 'Laravel'))
 
 @section('description', $product[0]->desc_ro)
 
@@ -14,8 +14,8 @@
                         <div class="clearfix" style="max-width:100%;">
                             <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                 @foreach($images as $img)
-                                    <li class="product_slider_images" data-thumb="/storage/products/{{$img}}">
-                                        <img class="product_slider_images" src="/storage/products/{{$img}}" />
+                                    <li class="product_slider_images" data-thumb="/storage/products/{{$img}}@50">
+                                        <img class="product_slider_images" src="/storage/products/{{$img}}@618" />
                                     </li>
                                 @endforeach
                             </ul>
@@ -67,7 +67,7 @@
             </div>
             <div class="product_content_img d-flex justify-content-center">
                 @if($product[0]->catalog_img <> null)
-                <img src="/storage/catalog_img/{{$product[0]->catalog_img}}" alt="{{$product[0]->name_ro}}">
+                <img src="/storage/catalog_img/{{$product[0]->catalog_img}}@968" alt="{{$product[0]->name_ro}}">
                 @endif
             </div>
             <hr>

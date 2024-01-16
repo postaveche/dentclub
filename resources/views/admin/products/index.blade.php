@@ -32,7 +32,7 @@
 
                                     <tr>
                                         <td><b>{{$product->id}}</b></td>
-                                        <td><img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/products_thumb/{{$product->image_thumb}}" alt="{{$product->name_ro}}"></td>
+                                        <td><img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/products_thumb/{{$product->image_thumb}}@90" alt="{{$product->name_ro}}"></td>
                                         <td><b>{{$product->name_ro}}</b> <br> <small>{{$product->name_ru}}</small></td>
                                         <td>{{$product->mycategory->name_ro??null}}</td>
                                         <td>

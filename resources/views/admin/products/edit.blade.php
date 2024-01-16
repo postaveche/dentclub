@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/products_thumb/{{$product[0]->image_thumb}}" alt="{{$product[0]->name_ro}}">
+                                <img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/products_thumb/{{$product[0]->image_thumb}}@90" alt="{{$product[0]->name_ro}}">
                             </div>
                             <div class="form-group">
                                 <label for="image_thumb">Imaginea reprezintativă</label>
@@ -91,7 +91,7 @@
                             </div>
                             @if($product_images == !null)
                                 @foreach($product_images as $image)
-                                    <img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/products/{{$image}}" alt="{{$product[0]->name_ro}}">
+                                    <img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/products/{{$image}}@90" alt="{{$product[0]->name_ro}}">
                                 @endforeach
                             @endif
                             <div class="form-group">
@@ -127,7 +127,7 @@
                             </div>
                             <div class="form-group">
                                 @if($product[0]->catalog_img <> null)
-                                    <img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/catalog_img/{{$product[0]->catalog_img}}" alt="{{$product[0]->name_ro}}">
+                                    <img style="width: 90px; border: #565757 1px solid; border-radius: 10px;" src="/storage/catalog_img/{{$product[0]->catalog_img}}@90" alt="{{$product[0]->name_ro}}">
                                     <input type="checkbox" name="delete_catalog_img" value="1">
                                     <label for="delete_catalog"> Șterge imaginea catalogul?</label><br>
                                 @endif

@@ -19,6 +19,7 @@ Route::get('/category', [\App\Http\Controllers\CategoryController::class, 'index
 Route::get('/category/{slug}', [\App\Http\Controllers\CategoryController::class, 'show'])->name('list_category');
 Route::get('/producatori', [\App\Http\Controllers\ProducatoriController::class, 'index'])->name('all_producatori');
 Route::get('/producatori/{slug}', [\App\Http\Controllers\ProducatoriController::class, 'show'])->name('list_producatori');
+Route::get('/search/', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 Auth::routes();
 
